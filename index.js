@@ -1,13 +1,28 @@
-axios = require('axios');
+const axios = require('axios');
+// import { IEXClient } from 'iex-api'
+const iexAPI = require('iex-api');
+const _fetch = require('isomorphic-fetch');
+console.log(iexAPI);
+
+const iex = new iexAPI.IEXClient(_fetch)
 
 const getData = async () => {
     return await axios.get('https://baconipsum.com/api/?type=meat-and-filler')
 }
 
-const run = async () => {
-    data = await getData()
-    console.log(data.data)
+const getStockInfo = () => {
+    iex.stockCompany('AAPL')
+        .then(company => console.log(company))
+        .catch(error => console.log(error))
 }
 
-setInterval(run, 1000)
+const run = async () => {
+    // const data = await getData()
+    // console.log(data.data)
+    getStockInfo()
+    
+}
+
+run()
+//setInterval(run, 1000)
 
