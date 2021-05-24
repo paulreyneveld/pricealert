@@ -6,9 +6,9 @@ const getTestData = async () => {
 }
 
 const getStockData = async () => {
-    return await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=${process.env.API_KEY}`)
+    return await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${process.env.TICKER}&outputsize=compact&interval=5min&apikey=${process.env.API_KEY}`)
 }
-console.log(process.env.TEST)
+
 const run = async () => {
     const testData = await getTestData()
     console.log(testData.data)
